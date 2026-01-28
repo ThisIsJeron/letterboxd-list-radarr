@@ -1,20 +1,13 @@
-# This docker-compose.yaml serves as development environment.
 version: "3.8"
 services:
     web:
-        image: node:15.3.0-alpine3.10
+        image: screeny05/letterboxd-list-radarr:latest
         ports:
-            - 4200:4200
-        working_dir: /home/node/app
-        volumes:
-            - ./:/home/node/app
+            - 5000:5000
         environment:
             - REDIS_URL=redis://redis:6379
-            - PORT=4200
             # Uncomment to enable FlareSolverr proxy for bypassing Cloudflare
             # - FLARESOLVERR_URL=http://flaresolverr:8191/v1
-        user: node
-        command: npm run watch
         depends_on:
             - redis
     redis:
